@@ -1,0 +1,16 @@
+<!--The content below is only a placeholder and can be replaced.-->
+
+<h1>These are our Receipes</h1>
+
+<div *ngFor="let recipe of recipes" class="recipe panel panel-deault">
+  <div class="panel-heading">
+    <div class="panel-title">{{recipe.title}}</div>
+  </div>
+  <div class="panel-body">
+    <div class="cover-photo-holder" style="float: right">
+      <img src="{{ recipe.cover_photo ? recipe.cover_photo : '/assets/emptybowl.jpg'}}"
+        style="width: 150px; height: 150px; margin: 5px" />
+    </div>
+    <p>{{ recipe.description }}</p>
+  </div>
+</div>
