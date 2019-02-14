@@ -2,3 +2,14 @@ h1 {
   font-size: 160%;
 }
 
+div.input-group {
+  margin: 10px 0;
+}
+
+.darkbg {
+  background-color: gray;
+}
+
+div.newrecipe {
+  max-width: 500px;
+}

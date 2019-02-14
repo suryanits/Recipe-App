@@ -1,7 +1,6 @@
 div.cover-photo-holder {
   float: right;
 }
-
 div.cover-photo-holder img {
   float: right;
   width: 150px;
@@ -20,4 +19,10 @@ div.cover-photo-holder img {
     width: 500px;
     margin: 10px 10px;
   }
+}
+
+.data-title {
+  float: left;
+  font-weight: bold;
+  width: 150px;
 }
