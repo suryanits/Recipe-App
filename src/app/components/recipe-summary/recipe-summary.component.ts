@@ -1,22 +1,22 @@
-import { Component, Input, Output, EventEmitter } from '@angular/core';
-import { Recipe } from '../..//model/recipe';
+import { Component, Input, EventEmitter, Output } from '@angular/core';
+
+import { Recipe } from '../../model/recipe';
 
 @Component({
   selector: 'app-recipe-summary',
   templateUrl: './recipe-summary.component.html',
   styleUrls: ['./recipe-summary.component.css']
 })
-export class RecipeSummaryComponent {
+export class RecipeSummaryComponent  {
+
   @Input()
   recipe: Recipe;
 
-  @Output()
-  zoonIn: EventEmitter<Recipe> = new EventEmitter();
+  @Output() userClick: EventEmitter<number> = new EventEmitter();
 
-  constructor() {}
+  constructor() { }
 
-  public zoomClicked() {
-    console.log('zoomInClicked()');
-    this.zoonIn.emit(this.recipe);
+  userClicked() {
+    this.userClick.emit(this.recipe.id);
   }
 }

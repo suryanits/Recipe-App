@@ -1,15 +1,8 @@
 h1 {
-  font-size: 160%;
-}
-
-div.input-group {
-  margin: 10px 0;
+    font-size: 160%;
 }
 
 .darkbg {
-  background-color: gray;
+    background-color: #aaaaaa;
 }
 
-div.newrecipe {
-  max-width: 500px;
-}

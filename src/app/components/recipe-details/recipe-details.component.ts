@@ -1,31 +1,25 @@
-import { Component } from '@angular/core';
+import { Component, OnInit } from '@angular/core';
+import { ActivatedRoute, ParamMap } from '@angular/router';
 
-import { Router } from '@angular/router';
+import { Location } from '@angular/common';
 
 import { Recipe } from '../../model/recipe';
 
-
+//import 'rxjs/add/operator/switchMap';
 
 @Component({
-  selector: 'app-recipe-list',
-  templateUrl: './recipe-list.component.html',
-  styleUrls: ['./recipe-list.component.css']
+  selector: 'app-recipe-details',
+  templateUrl: './recipe-details.component.html',
+  styleUrls: ['./recipe-details.component.css']
 })
-export class RecipeListComponent {
+export class RecipeDetailsComponent implements OnInit {
 
-  current_classes: any;
+  recipe: Recipe;
 
-current_styles: any;
+  recipes: Recipe[];
 
-recipes: Recipe[];
-
-  recipe_in_progress: Recipe;
-
-  constructor(private router: Router) {
-
-    this.current_classes = { 'darkbg': false };
-    this.current_styles = { 'font-size' : '150%' };
-
+  constructor(private route: ActivatedRoute,
+              private location: Location) {
     this.recipes = [
       Recipe.recipeFromJSON({
         'id': 1,
@@ -134,21 +128,26 @@ recipes: Recipe[];
         ]
       })
   ];
+   }
 
+  ngOnInit(): void {
+    this.route.paramMap.subscribe((params: ParamMap) => {
+      this.recipe = this.findRecipeById(parseInt(params.get('recipe_id'), 10));
+    });
   }
 
-  public addRecipeClicked() {
-    console.log(JSON.stringify(this.recipe_in_progress, null, 2));
-    this.recipes.unshift(this.recipe_in_progress);
-    this.recipe_in_progress = Recipe.createBlank();
+  findRecipeById(id: number): Recipe {
+    for (const recipe of this.recipes) {
+      if (recipe.id === id) {
+        return recipe;
+      }
+    }
+
+    return null;
   }
 
-  userClickedOnRecipe(recipe_id): void {
-    this.router.navigateByUrl('/recipes/' + recipe_id);
-  }
-
-  addNewRecipePressed(): void {
-    this.router.navigateByUrl('/editnewrecipe');
+  goBackButtonPressed(): void {
+    this.location.back();
   }
 
 }
